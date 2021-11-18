@@ -15,19 +15,19 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @GetMapping
-    public List<Product> getAllProduct(){
-        List<Product> a = productRepository.findAll();
-        return a;
+    public List<Product> getAllProduct(@RequestParam(value = "category", required = false) String category){
+        List<Product> products = category.isEmpty() ? productRepository.findAll() : productRepository.findByCategory(category);
+        return products;
     }
 
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable(value = "id") Integer id) {
-        Product p = productRepository.getById(id);
-        return p;
+        Product product = productRepository.getById(id);
+        return product;
     }
 
-//    @PostMapping
-//    public Product saveProduct(@RequestBody Product product){
-//        return productRepository.save(product);
-//    }
+    @PostMapping
+    public Product saveProduct(@RequestBody Product product){
+        return productRepository.save(product);
+    }
 }

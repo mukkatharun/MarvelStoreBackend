@@ -1,6 +1,9 @@
 package com.example.marvelstore.MarvelStore.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,19 +11,27 @@ import java.util.Date;
 @Entity
 @Table(name="Orders")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Orders {
 
     @Id
-    @Column(name="OrderId")
+    @Column(name="Orderid")
     private Integer id;
 
-    private float OrderAmount;
+    @Column(name="Amount")
+    private float amount;
 
-    private Date OrderTime;
+    @Column(name="Time")
+    private Date time;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "UserId")
-    private Users UserId;
+    @Column(name="Userid")
+    private Integer userId;
+
+//    @OneToOne
+//    @JoinColumn(name = "Userid")
+//    private Users Users;
 
     public Integer getId() {
         return id;
@@ -30,27 +41,14 @@ public class Orders {
         this.id = id;
     }
 
-    public float getOrderAmount() {
-        return OrderAmount;
-    }
 
-    public void setOrderAmount(float orderAmount) {
-        OrderAmount = orderAmount;
-    }
 
-    public Date getOrderTime() {
-        return OrderTime;
-    }
+//    public com.example.marvelstore.MarvelStore.Model.Users getUsers() {
+//        return Users;
+//    }
+//
+//    public void setUsers(com.example.marvelstore.MarvelStore.Model.Users users) {
+//        Users = users;
+//    }
 
-    public void setOrderTime(Date orderTime) {
-        OrderTime = orderTime;
-    }
-
-    public Users getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(Users userId) {
-        UserId = userId;
-    }
 }

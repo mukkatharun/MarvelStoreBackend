@@ -17,8 +17,10 @@ public class OrdersController {
     private OrdersRepository ordersRepository;
 
     @GetMapping
-    public List<Orders> getAllOrders(){
-        return ordersRepository.findAll();
+    public List<Orders> getAllOrders(@RequestParam(value = "userid", required = false) Integer userid) {
+        List<Orders> orders = userid == null ? ordersRepository.findAll() : ordersRepository.findAllByUserId(userid);
+//        List<Orders> orders = ordersRepository.findAll();
+        return orders;
     }
 
     @GetMapping("/{id}")

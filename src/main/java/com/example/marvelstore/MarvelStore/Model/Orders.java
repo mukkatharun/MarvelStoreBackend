@@ -26,12 +26,12 @@ public class Orders {
     @Column(name="Time")
     private Date time;
 
-    @Column(name="Userid")
-    private Integer userId;
+//    @Column(name="Userid")
+//    private Integer userId;
 
-//    @OneToOne
-//    @JoinColumn(name = "Userid")
-//    private Users Users;
+    @OneToOne
+    @JoinColumn(name = "Userid")
+    private Users users;
 
     public Integer getId() {
         return id;

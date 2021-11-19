@@ -16,7 +16,8 @@ public class ProductController {
 
     @GetMapping
     public List<Product> getAllProduct(@RequestParam(value = "category", required = false) String category){
-        List<Product> products = category.isEmpty() ? productRepository.findAll() : productRepository.findByCategory(category);
+        List<Product> products = category == null ? productRepository.findAll() : productRepository.findByCategory(category);
+//        List<Product> products = productRepository.findAll();
         return products;
     }
 

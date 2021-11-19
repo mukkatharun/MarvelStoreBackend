@@ -11,15 +11,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/Orders")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class OrdersController {
     @Autowired
     private OrdersRepository ordersRepository;
 
     @GetMapping
     public List<Orders> getAllOrders(@RequestParam(value = "userid", required = false) Integer userid) {
-        List<Orders> orders = userid == null ? ordersRepository.findAll() : ordersRepository.findAllByUserId(userid);
-//        List<Orders> orders = ordersRepository.findAll();
+        List<Orders> orders = userid == null ? ordersRepository.findAll() : ordersRepository.findAllByUsersId(userid);
         return orders;
     }
 

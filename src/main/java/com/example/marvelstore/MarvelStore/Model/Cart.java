@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
@@ -18,12 +15,16 @@ public class Cart {
     @Id
     private Integer id;
 
-    private String productName;
+    private String pname;
 
     private Integer quantity;
 
     @OneToOne
+    @JoinColumn(name = "Userid")
     private Users users;
+
+//    @OneToOne
+//    private Users users;
 
     private Boolean active;
 }

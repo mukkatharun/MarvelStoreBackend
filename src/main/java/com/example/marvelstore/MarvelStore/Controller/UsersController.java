@@ -29,4 +29,11 @@ public class UsersController {
     public Users saveUser(@RequestBody Users user){
         return usersRepository.save(user);
     }
+
+    @DeleteMapping
+    public String deleteUser(@RequestParam(value = "userid", required = true) Integer userid) {
+        usersRepository.deleteById(userid);
+        return "Successfully deleted User " + userid;
+    }
+
 }

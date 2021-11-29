@@ -1,17 +1,18 @@
-package com.example.marvelstore.MarvelStore.Model;
+package com.example.marvelstore.MarvelStore.ModelDTO;
 
+import com.example.marvelstore.MarvelStore.Model.Product;
+import com.example.marvelstore.MarvelStore.Model.Users;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Cart {
+public class CartDTO {
 
     @Id
     private Integer id;
@@ -20,13 +21,9 @@ public class Cart {
 
     private Integer quantity;
 
-    @OneToOne
-    @JoinColumn(name = "Userid")
-    private Users users;
+    private Integer userid;
 
-    @OneToOne
-    @JoinColumn(name = "productid")
-    private Product productid;
+    private Integer productid;
 
     private Boolean active;
 

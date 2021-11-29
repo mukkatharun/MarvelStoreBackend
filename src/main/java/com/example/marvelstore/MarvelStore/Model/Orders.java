@@ -33,6 +33,8 @@ public class Orders {
     @JoinColumn(name = "Userid")
     private Users users;
 
+    private String image;
+
     public Integer getId() {
         return id;
     }

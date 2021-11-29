@@ -1,12 +1,14 @@
 package com.example.marvelstore.MarvelStore.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="Product")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
 public class Product {
 
     @Id
@@ -19,6 +21,8 @@ public class Product {
     private String category;
 
     private Float price;
+
+    private String image;
 
     public Integer getId() {
         return productid;

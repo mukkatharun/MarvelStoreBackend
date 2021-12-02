@@ -17,6 +17,7 @@ import java.util.Date;
 public class Orders {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Orderid")
     private Integer id;
 
@@ -24,7 +25,7 @@ public class Orders {
     private float amount;
 
     @Column(name="Time")
-    private Date time;
+    private String time;
 
 //    @Column(name="Userid")
 //    private Integer userId;

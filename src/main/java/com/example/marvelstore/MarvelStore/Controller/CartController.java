@@ -42,6 +42,7 @@ public class CartController {
         cart.setQuantity(1);
         cart.setUsers(user);
         cart.setProductid(product);
+//        cart.setId(7);
 
         return cartRepository.save(cart);
     }

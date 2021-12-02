@@ -8,14 +8,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class CartDTO {
-
-    @Id
-    private Integer id;
 
     private String pname;
 

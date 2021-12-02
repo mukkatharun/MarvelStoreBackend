@@ -19,12 +19,12 @@ public class UsersController {
 
     @GetMapping
     public List<Users> getAllUsers(){
-        return usersRepository.findAll();
+        return usersRepository.findByActive(true);
     }
 
     @GetMapping("/{user}")
     public Users getUserByEmail(@RequestParam(value = "email") String email) {
-        return usersRepository.findByEmailAndActive(email, true);
+        return usersRepository.findByEmail(email);
     }
 
     @PostMapping

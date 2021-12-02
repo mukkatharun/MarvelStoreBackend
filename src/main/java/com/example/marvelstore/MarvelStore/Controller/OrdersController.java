@@ -7,10 +7,12 @@ import com.example.marvelstore.MarvelStore.ModelDTO.OrderDTO;
 import com.example.marvelstore.MarvelStore.Repository.OrdersRepository;
 import com.example.marvelstore.MarvelStore.Repository.UsersRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -36,17 +38,22 @@ public class OrdersController {
     }
 
     @PostMapping
-    public Orders saveOrder(@RequestBody OrderDTO order){
+    public List<Orders> saveOrder(@RequestBody List<OrderDTO> orderDTOS){
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
 
-        Optional<Users> user = usersRepository.findById(order.getUserId());
-        Orders c = new Orders();
-        c.setUsers(user.get());
-        c.setAmount(order.getAmount());
-        c.setImage(order.getImage());
-        c.setTime(formatter.format(date));
-        c.setName(order.getName());
-        return ordersRepository.save(c);
+        Optional<Users> user = usersRepository.findById(orderDTOS.get(0).getUserId());
+        List<Orders> orders = new ArrayList<Orders>();
+        orderDTOS.parallelStream().forEach(orderDTO -> {
+            Orders c = new Orders();
+            c.setUsers(user.get());
+            c.setAmount(orderDTO.getAmount());
+            c.setImage(orderDTO.getImage());
+            c.setTime(formatter.format(date));
+            c.setName(orderDTO.getName());
+            orders.add(c);
+        });
+
+        return ordersRepository.saveAll(orders);
     }
 }

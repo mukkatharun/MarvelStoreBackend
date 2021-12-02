@@ -36,6 +36,8 @@ public class Orders {
 
     private String image;
 
+    private String name;
+
     public Integer getId() {
         return id;
     }

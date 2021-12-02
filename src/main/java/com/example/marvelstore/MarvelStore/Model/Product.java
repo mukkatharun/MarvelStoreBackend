@@ -24,6 +24,10 @@ public class Product {
 
     private String image;
 
+    @OneToOne
+    @JoinColumn(name = "Userid")
+    private Users users;
+
     public Integer getId() {
         return productid;
     }

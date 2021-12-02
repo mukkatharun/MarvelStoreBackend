@@ -46,6 +46,7 @@ public class OrdersController {
         c.setAmount(order.getAmount());
         c.setImage(order.getImage());
         c.setTime(formatter.format(date));
+        c.setName(order.getName());
         return ordersRepository.save(c);
     }
 }

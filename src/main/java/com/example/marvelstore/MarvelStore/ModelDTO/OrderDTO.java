@@ -29,4 +29,6 @@ public class OrderDTO {
 //    private Users users;
 
     private String image;
+
+    private String name;
 }

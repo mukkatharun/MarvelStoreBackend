@@ -2,15 +2,18 @@ package com.example.marvelstore.MarvelStore.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.lang.management.BufferPoolMXBean;
 
 @Entity
 @Table(name="users")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Data
 public class Users {
     @Id
     @Column(name="PersonID")
@@ -21,6 +24,8 @@ public class Users {
     private String email;
 
     private Integer userrole;
+
+    private Boolean active;
 
     public Integer getId() {
         return id;

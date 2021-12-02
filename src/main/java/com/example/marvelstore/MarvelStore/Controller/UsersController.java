@@ -24,7 +24,7 @@ public class UsersController {
 
     @GetMapping("/{user}")
     public Users getUserByEmail(@RequestParam(value = "email") String email) {
-        return usersRepository.findByEmail(email);
+        return usersRepository.findByEmailAndActive(email, true);
     }
 
     @PostMapping
@@ -34,7 +34,9 @@ public class UsersController {
 
     @DeleteMapping
     public String deleteUser(@RequestParam(value = "userid", required = true) Integer userid) {
-        usersRepository.deleteById(userid);
+        Users user =  usersRepository.getById(userid);
+        user.setActive(false);
+        usersRepository.save(user);
         return "Successfully deleted User " + userid;
     }
 
